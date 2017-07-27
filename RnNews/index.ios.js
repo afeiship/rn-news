@@ -12,6 +12,7 @@ import {
   Alert,
   WebView,
   StatusBar,
+  Image,
   ActivityIndicator,
   Settings,
   View
@@ -20,6 +21,8 @@ import {
 import {
   Container,
   Content,
+  H1,
+  H2,
   Header,
   Footer,
   FooterTab,
@@ -33,10 +36,13 @@ import {
   Grid,
   Col,
   Row,
+  CheckBox,
+  Toast,
   List,
   ListItem
 } from 'native-base';
 
+import {Row as row, Col as col} from 'react-native-styles-flexbox-grid';
 
 const styles = StyleSheet.create({
   container: {
@@ -75,42 +81,8 @@ const styles = StyleSheet.create({
 
 
 export default class RnNews extends Component {
-  state = {
-    animating: false,
-    value: 'test'
-  };
-
-  _click1 = e => {
-    // ActivityIndicator.show();
-    // Alert.alert(
-    //   'Alert Title',
-    //   'My Alert Msg',
-    //   [
-    //     {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-    //     {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-    //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-    //   ],
-    //   { cancelable: false }
-    // )
-
-    this.setState({animating: !this.state.animating})
-  };
-
-  _set_set = e => {
-    console.log('set cache.!');
-    Settings.set({
-      value: 'tes12t-fei'
-    })
-  };
-  _set_get = e => {
-    this.setState({
-      value: Settings.get('value')
-    })
-  };
-
   render() {
-    var items = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Emre Can'];
-
+    const items = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Emre Can'];
     return (
       <Container>
         <Header>
@@ -121,9 +93,13 @@ export default class RnNews extends Component {
 
         <Content>
           <Text style={[styles.welcome]}>Hello Native Base!</Text>
-          <Button full success>
+          <Button full success onPress={()=> Toast.show({
+            text: 'Wrong password!',
+            position: 'bottom',
+            buttonText: 'Okay'
+          })}>
             <Icon name='home'/>
-            <Text style={{color: '#fff'}}>Native Base button</Text>
+            <Text style={{color: '#fff'}}>Show Toast</Text>
           </Button>
           <Button full>
             <Text style={{color: '#fff'}}>Native Base button</Text>
@@ -135,14 +111,43 @@ export default class RnNews extends Component {
                   </ListItem>
                 }>
           </List>
-          <Grid>
-            <Col style={{backgroundColor: '#635DB7', height: 200}}>
+
+          <Card>
+            <CardItem header>
+              <Text>NativeBase</Text>
+            </CardItem>
+            <CardItem>
+              <Body>
+              <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                     style={{width: 300, height: 300}} />
+              </Body>
+            </CardItem>
+            <CardItem footer>
+              <Text>GeekyAnts</Text>
+            </CardItem>
+          </Card>
+
+          <ListItem>
+            <CheckBox checked={true} />
+            <Body>
+            <Text>Daily Stand Up</Text>
+            </Body>
+          </ListItem>
+          <ListItem>
+            <CheckBox checked={false} />
+            <Body>
+            <Text>Discussion with Client</Text>
+            </Body>
+          </ListItem>
+
+          <View style={[{backgroundColor: '#EEE', height: 100}, row.$, row.center]}>
+            <View style={[{backgroundColor: '#635DB7'}, col.$, col.span30]}>
               <Icon name='home'/>
-            </Col>
-            <Col style={{backgroundColor: '#00CE9F', height: 200}}>
+            </View>
+            <View style={[{backgroundColor: '#00CE9F'}, col.$, col.span20]}>
               <Icon name='ios-menu'/>
-            </Col>
-          </Grid>
+            </View>
+          </View>
 
         </Content>
         <Footer>
