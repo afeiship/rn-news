@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -17,8 +17,25 @@ import {
   View
 } from 'react-native';
 
-import { Row, Col, Box } from 'react-native-styles-flexbox-grid';
-import stylesBase from 'react-native-styles-base';
+import {
+  Container,
+  Content,
+  Header,
+  Footer,
+  FooterTab,
+  Button,
+  Left,
+  Body,
+  Title,
+  Icon,
+  Card,
+  CardItem,
+  Grid,
+  Col,
+  Row,
+  List,
+  ListItem
+} from 'native-base';
 
 
 const styles = StyleSheet.create({
@@ -34,15 +51,15 @@ const styles = StyleSheet.create({
     margin: 50,
   },
   bd1: {
-    borderWidth:2,
-    borderStyle:'solid',
-    borderColor:'#f00'
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#f00'
   },
-  h50:{
+  h50: {
     height: 50
   },
   tc: {
-    textAlign:'center'
+    textAlign: 'center'
   },
   centering: {
     alignItems: 'center',
@@ -57,12 +74,10 @@ const styles = StyleSheet.create({
 });
 
 
-
-
 export default class RnNews extends Component {
   state = {
     animating: false,
-    value:'test'
+    value: 'test'
   };
 
   _click1 = e => {
@@ -78,12 +93,13 @@ export default class RnNews extends Component {
     //   { cancelable: false }
     // )
 
-    this.setState({ animating: !this.state.animating })
+    this.setState({animating: !this.state.animating})
   };
 
   _set_set = e => {
+    console.log('set cache.!');
     Settings.set({
-      value:'tes12t'
+      value: 'tes12t-fei'
     })
   };
   _set_get = e => {
@@ -91,32 +107,50 @@ export default class RnNews extends Component {
       value: Settings.get('value')
     })
   };
+
   render() {
+    var items = ['Simon Mignolet', 'Nathaniel Clyne', 'Dejan Lovren', 'Mama Sakho', 'Emre Can'];
+
     return (
-      <View>
-        <Text style={[styles.welcome]}>Hello RN!</Text>
-        <View style={[Row.$,styles.h50, styles.bd1,Row.center]}>
-          <View style={[Col.$]}>
-            <Text style={[stylesBase.tl, stylesBase.c_3]}>Col1-value: {this.state.value}</Text>
-          </View>
-          <View style={[Col.$]} >
-            <Text onPress={this._click1} style={[styles.tc, stylesBase.c_6]}>Toggle</Text>
-          </View>
-          <View style={[Col.$]}>
-            <Text style={[stylesBase.tr, stylesBase.c_9]} onPress={this._set_set}>Set-set</Text>
-          </View>
+      <Container>
+        <Header>
+          <Body>
+          <Title>Native Base</Title>
+          </Body>
+        </Header>
 
-          <View style={[Col.$]}>
-            <Text style={[stylesBase.tr, stylesBase.c_9]} onPress={this._set_get}>Set-get</Text>
-          </View>
+        <Content>
+          <Text style={[styles.welcome]}>Hello Native Base!</Text>
+          <Button full success>
+            <Icon name='home'/>
+            <Text style={{color: '#fff'}}>Native Base button</Text>
+          </Button>
+          <Button full>
+            <Text style={{color: '#fff'}}>Native Base button</Text>
+          </Button>
+          <List dataArray={items}
+                renderRow={(item) =>
+                  <ListItem>
+                    <Text>{item}</Text>
+                  </ListItem>
+                }>
+          </List>
+          <Grid>
+            <Col style={{backgroundColor: '#635DB7', height: 200}}>
+              <Icon name='home'/>
+            </Col>
+            <Col style={{backgroundColor: '#00CE9F', height: 200}}>
+              <Icon name='ios-menu'/>
+            </Col>
+          </Grid>
 
-          <ActivityIndicator 
-                style={[styles.centering]} 
-                size="large"
-                color="#0000ff"
-                animating={this.state.animating} />
-        </View>
-      </View>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Text>Footer Here!</Text>
+          </FooterTab>
+        </Footer>
+      </Container>
     );
   }
 }
