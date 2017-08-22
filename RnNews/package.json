@@ -10,9 +10,13 @@
     "native-base": "2.2.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
+    "react-native-config": "^0.5.0",
     "react-native-flexbox-grid": "github:afeiship/react-native-flexbox-grid",
+    "react-native-pull-to-refresh": "^2.1.0",
+    "react-native-stylekit": "github:afeiship/react-native-stylekit",
     "react-native-styles-base": "github:afeiship/react-native-styles-base",
-    "react-native-styles-flexbox-grid": "github:afeiship/react-native-styles-flexbox-grid"
+    "react-native-styles-flexbox-grid": "github:afeiship/react-native-styles-flexbox-grid",
+    "react-native-toast-native": "^1.1.2"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
